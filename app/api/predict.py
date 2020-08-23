@@ -38,8 +38,7 @@ def format_input(zipcode, square_footage, bedrooms, bathrooms, review_score_rati
                 free_park = Dict.get(free_parking)
                 wi_fi = Dict.get(wifi)
                 cab_tv = Dict.get(cable_tv)
-                return zipcode, square_footage, bedrooms, bathrooms, review_score_rating, accommodates, cleaning_fee, free_park, wi_fi, cab_tv, prop_type, can_pol
-
+                return zipcode, square_footage, bedrooms, bathrooms, review_score_rating, accommodates, cleaning_fee, float(free_park), float(wi_fi), float(cab_tv), float(prop_type), float(can_pol)
 
 
 @router.post('/predict')
