@@ -32,7 +32,7 @@ class Item(BaseModel):
 def format_input(zipcode, square_footage, bedrooms, bathrooms, review_score_rating,
                 accommodates, cleaning_fee, free_parking, wifi, cable_tv, property_type, 
                 cancellation_policy):
-                Dict = {'flexible' : 0, 'moderate' : 1, 'strict' : 2, 'yes' : 1, 'no' : 0}
+                Dict = {'Apartment' : 1, 'House' : 0, 'flexible' : 0, 'moderate' : 1, 'strict' : 2, 'yes' : 1, 'no' : 0}
                 prop_type = Dict.get(property_type)
                 can_pol = Dict.get(cancellation_policy)
                 free_park = Dict.get(free_parking)
@@ -49,8 +49,8 @@ async def predict(item: Item):
     #model = model.load()
     #y_pred = model.predict(format_input(X_new['zipcode'].iloc[0], X_new['square_footage'].iloc[0], X_new['bedrooms'].iloc[0], X_new['bathrooms'].iloc[0], 
     #                       X_new['review_score_rating'].iloc[0], X_new['accommodates'].iloc[0], X_new['cleaning_fee'].iloc[0], X_new['free_parking'].iloc[0], 
-    #                       X_new['wifi'].iloc[0], X_new['cable_tv'].iloc[0], X_new['property_type'].iloc[0], X_new['cancellation_policy'].iloc[0],))
-    y_pred = random.randint(100, 500)
+    #                       X_new['wifi'].iloc[0], X_new['cable_tv'].iloc[0], X_new['property_type'].iloc[0], X_new['cancellation_policy'].iloc[0]))
+    y_pred = float(random.randint(100, 500))
     return {
         'prediction': y_pred
     }
