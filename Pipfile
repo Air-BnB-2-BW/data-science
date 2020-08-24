@@ -16,6 +16,8 @@ fastapi = "*"
 pandas = "*"
 uvicorn = "*"
 plotly = "*"
+tensorflow-cpu = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.7"
