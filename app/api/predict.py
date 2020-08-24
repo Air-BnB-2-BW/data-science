@@ -4,6 +4,7 @@ import random
 from fastapi import APIRouter
 import pandas as pd
 from pydantic import BaseModel, Field, validator
+from sklearn.preprocessing import MinMaxScaler
 
 log = logging.getLogger(__name__)
 router = APIRouter()
@@ -38,7 +39,10 @@ def format_input(zipcode, square_footage, bedrooms, bathrooms, review_score_rati
                 free_park = Dict.get(free_parking)
                 wi_fi = Dict.get(wifi)
                 cab_tv = Dict.get(cable_tv)
-                return zipcode, square_footage, bedrooms, bathrooms, review_score_rating, accommodates, cleaning_fee, float(free_park), float(wi_fi), float(cab_tv), float(prop_type), float(can_pol)
+                Xnew = np.array([[zipcode, square_footage, bedrooms, bathrooms, review_score_rating, accommodates, cleaning_fee, float(free_park), float(wi_fi), float(cab_tv), float(prop_type), float(can_pol)]])
+                scaler_x = MinMaxScaler()
+                Xnew= scaler_x.transform(Xnew)
+                return Xnew
 
 
 @router.post('/predict')
