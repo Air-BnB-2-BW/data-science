@@ -57,7 +57,7 @@ async def predict(item: Item):
     #                       X_new['review_score_rating'].iloc[0], X_new['accommodates'].iloc[0], X_new['cleaning_fee'].iloc[0], X_new['free_parking'].iloc[0], 
     #                       X_new['wifi'].iloc[0], X_new['cable_tv'].iloc[0], X_new['property_type'].iloc[0], X_new['cancellation_policy'].iloc[0]))
     #scaler_y = MinMaxScaler()
-    # ypred = scaler_y.inverse_transform(ynew)
+    # ypred = scaler_y.inverse_transform(ypred)
     y_pred = float(random.randint(100, 500))
     return {
         'prediction': y_pred
