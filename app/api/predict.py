@@ -29,7 +29,7 @@ scaler_x.fit(X)
 xscale=scaler_x.transform(X)
 scaler_y.fit(y)
 yscale=scaler_y.transform(y)
-X = StandardScaler().fit_transform(X)
+'''X = StandardScaler().fit_transform(X)
 y = StandardScaler().fit_transform(y.reshape(len(y),1))[:,0]
 X_train, X_test, y_train, y_test = train_test_split(xscale, yscale)
 model = Sequential()
@@ -37,7 +37,7 @@ model.add(Dense(12, input_dim=12, kernel_initializer='normal', activation='relu'
 model.add(Dense(8, activation='relu'))
 model.add(Dense(1, activation='linear'))
 model.compile(loss='mse', optimizer='adam', metrics=['mse','mae'])
-history = model.fit(X_train, y_train, epochs=150, batch_size=50,  verbose=1, validation_split=0.2)
+history = model.fit(X_train, y_train, epochs=150, batch_size=50,  verbose=1, validation_split=0.2)'''
 
 
 class Item(BaseModel):
@@ -68,6 +68,7 @@ async def predict(item: Item):
     """Make random baseline predictions for classification problem."""
     X_new = item.to_df()
     log.info(X_new)
+    model = tf.keras.models.load_model("keras_model1")
     Dict = {'Apartment' : 1, 'House' : 0, 'flexible' : 0, 'moderate' : 1, 'strict' : 2, 'yes' : 1, 'no' : 0}
     prop_type = Dict.get(X_new['property_type'].iloc[0])
     can_pol = Dict.get(X_new['cancellation_policy'].iloc[0])
