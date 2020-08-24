@@ -12,6 +12,15 @@ from tensorflow import keras
 log = logging.getLogger(__name__)
 router = APIRouter()
 
+df = pd.read_csv('airbnb_BW.csv')
+dataset = df.values
+X = dataset[:,0:12]
+y = dataset[:,12]
+y=np.reshape(y, (-1,1))
+scaler_x = MinMaxScaler()
+scaler_y = MinMaxScaler()
+scaler_x.fit(X)
+scaler_y.fit(y)
 
 class Item(BaseModel):
     """Use this data model to parse the request body JSON."""
@@ -43,7 +52,6 @@ def format_input(zipcode, square_footage, bedrooms, bathrooms, review_score_rati
                 wi_fi = Dict.get(wifi)
                 cab_tv = Dict.get(cable_tv)
                 Xnew = np.array([[zipcode, square_footage, bedrooms, bathrooms, review_score_rating, accommodates, cleaning_fee, float(free_park), float(wi_fi), float(cab_tv), float(prop_type), float(can_pol)]])
-                scaler_x = MinMaxScaler()
                 Xnew= scaler_x.transform(Xnew)
                 return Xnew
 
@@ -57,7 +65,6 @@ async def predict(item: Item):
     y_pred = model.predict(format_input(X_new['zipcode'].iloc[0], X_new['square_footage'].iloc[0], X_new['bedrooms'].iloc[0], X_new['bathrooms'].iloc[0], 
                            X_new['review_score_rating'].iloc[0], X_new['accommodates'].iloc[0], X_new['cleaning_fee'].iloc[0], X_new['free_parking'].iloc[0], 
                            X_new['wifi'].iloc[0], X_new['cable_tv'].iloc[0], X_new['property_type'].iloc[0], X_new['cancellation_policy'].iloc[0]))
-    scaler_y = MinMaxScaler()
     ypred = scaler_y.inverse_transform(ypred)
     #y_pred = float(random.randint(100, 500))
     return {
