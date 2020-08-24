@@ -3,6 +3,7 @@ import random
 
 from fastapi import APIRouter
 import pandas as pd
+import numpy as np
 from pydantic import BaseModel, Field, validator
 from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
