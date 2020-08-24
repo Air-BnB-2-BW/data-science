@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 
-'''df = pd.read_csv('airbnb_BW.csv')
+df = pd.read_csv('airbnb_BW.csv', index_col=0)
 dataset = df.values
 X = dataset[:,0:12]
 y = dataset[:,12]
@@ -37,7 +37,7 @@ model.add(Dense(12, input_dim=12, kernel_initializer='normal', activation='relu'
 model.add(Dense(8, activation='relu'))
 model.add(Dense(1, activation='linear'))
 model.compile(loss='mse', optimizer='adam', metrics=['mse','mae'])
-history = model.fit(X_train, y_train, epochs=150, batch_size=50,  verbose=1, validation_split=0.2)'''
+history = model.fit(X_train, y_train, epochs=150, batch_size=50,  verbose=1, validation_split=0.2)
 
 
 class Item(BaseModel):
@@ -68,7 +68,7 @@ async def predict(item: Item):
     """Make random baseline predictions for classification problem."""
     X_new = item.to_df()
     log.info(X_new)
-    '''Dict = {'Apartment' : 1, 'House' : 0, 'flexible' : 0, 'moderate' : 1, 'strict' : 2, 'yes' : 1, 'no' : 0}
+    Dict = {'Apartment' : 1, 'House' : 0, 'flexible' : 0, 'moderate' : 1, 'strict' : 2, 'yes' : 1, 'no' : 0}
     prop_type = Dict.get(X_new['property_type'].iloc[0])
     can_pol = Dict.get(X_new['cancellation_policy'].iloc[0])
     free_park = Dict.get(X_new['free_parking'].iloc[0])
@@ -80,8 +80,8 @@ async def predict(item: Item):
     Xnew= scaler_x.transform(Xnew)
     y_pred = model.predict(Xnew)
     y_pred = scaler_y.inverse_transform(y_pred)
-    y_pred = float(y_pred[0][0])'''
-    y_pred = float(random.randint(100, 500))
+    y_pred = float(y_pred[0][0])
+    #y_pred = float(random.randint(100, 500))
     return {
         'prediction': y_pred
     }
