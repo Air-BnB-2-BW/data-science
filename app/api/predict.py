@@ -45,12 +45,28 @@ class Item(BaseModel):
 def format_input(zipcode, square_footage, bedrooms, bathrooms, review_score_rating,
                 accommodates, cleaning_fee, free_parking, wifi, cable_tv, property_type, 
                 cancellation_policy):
-                Dict = {'Apartment' : 1, 'House' : 0, 'flexible' : 0, 'moderate' : 1, 'strict' : 2, 'yes' : 1, 'no' : 0}
-                prop_type = Dict.get(property_type)
-                can_pol = Dict.get(cancellation_policy)
-                free_park = Dict.get(free_parking)
-                wi_fi = Dict.get(wifi)
-                cab_tv = Dict.get(cable_tv)
+                if property_type == 'Apartment':
+                    prop_type = 1
+                else:
+                    prop_type = 0
+                if cancellation_policy == 'flexible':
+                    can_pol = 0
+                elif cancellation_policy == 'moderate':
+                    can_pol = 1
+                else:
+                    can_pol = 2
+                if wifi == 'yes':
+                    wi_fi = 1
+                else:
+                    wi_fi = 0
+                if free_parking == 'yes':
+                    free_park = 1
+                else:
+                    free_park = 0
+                if cable_tv == 'yes':
+                    cab_tv = 1
+                else:
+                    cab_tv = 0
                 Xnew = np.array([[zipcode, square_footage, bedrooms, bathrooms, review_score_rating, accommodates, cleaning_fee, float(free_park), float(wi_fi), float(cab_tv), float(prop_type), float(can_pol)]])
                 Xnew= scaler_x.transform(Xnew)
                 return Xnew
