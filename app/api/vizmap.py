@@ -24,8 +24,8 @@ async def visual():
     # Mapbox style for map
     fig.update_layout(mapbox_style="open-street-map")
     # Update size/layout
-    fig.update_layout(width=2000,
-                      height=1000,
+    fig.update_layout(width=900,
+                      height=900,
                       margin={"r": 1, "t": 1, "l": 1, "b": 1})
     # plot map
     fig.show();
