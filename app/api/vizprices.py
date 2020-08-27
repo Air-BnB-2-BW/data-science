@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 router = APIRouter()
 
 @router.get('/vizprices')
-async def visual():
+async def visual(x,y):
     # load in airbnb dataset
     DATA_PATH = 'https://raw.githubusercontent.com/Air-BnB-2-BW/data-science/master/airbnb_bw.csv'
     df = pd.read_csv(DATA_PATH, index_col=0)
