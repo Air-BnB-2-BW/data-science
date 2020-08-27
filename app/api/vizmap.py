@@ -28,5 +28,5 @@ async def visual():
                       height=900,
                       margin={"r": 1, "t": 1, "l": 1, "b": 1})
     # plot map
-    fig.show();
+    fig.show()
     return fig.to_json()
