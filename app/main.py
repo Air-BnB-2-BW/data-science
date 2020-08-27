@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.api import predict, viz, vizmap
+from app.api import predict, viz, vizmap, vizprices
 
 app = FastAPI(
     title='AirBnB DS API',
@@ -14,6 +14,7 @@ app = FastAPI(
 app.include_router(predict.router)
 app.include_router(viz.router)
 app.include_router(vizmap.router)
+app.include_router(vizprices.router)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
