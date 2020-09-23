@@ -2,18 +2,17 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.api import predict, vizmap, vizprices
+from app.api import predict, viz
 
 app = FastAPI(
-    title='AirBnB DS API',
+    title='MedCab DS API',
     description='',
     version='0.1',
     docs_url='/',
 )
 
 app.include_router(predict.router)
-app.include_router(vizmap.router)
-app.include_router(vizprices.router)
+app.include_router(viz.router)
 
 app.add_middleware(
     CORSMiddleware,
