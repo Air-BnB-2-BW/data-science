@@ -9,8 +9,8 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 """read in the data"""
-data = pd.read_csv('https://raw.githubusercontent.com/'
-                   'build-week-medcabinet-ch/data-science/master/data/final%20(1).csv')
+data = pd.read_csv('https://raw.githubusercontent.com'
+                   '/build-week-medcabinet-ch/data-science/master/data/final%20(1).csv')
 
 
 class Item(BaseModel):
